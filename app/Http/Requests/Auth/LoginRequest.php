@@ -11,6 +11,8 @@ use Illuminate\Validation\ValidationException;
 
 class LoginRequest extends FormRequest
 {
+    protected $stopOnFirstFailure = true;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -89,5 +91,17 @@ class LoginRequest extends FormRequest
     public function throttleKey()
     {
         return Str::lower($this->input('email')).'|'.$this->ip();
+    }
+
+    public function messages()
+    {
+        return [
+            'email.required' => 'É necessário informar um <span class="font-semibold">email</span>',
+            'email.string' => 'Formato do <span class="font-semibold">email</span> inválido',
+            'email.email' => 'Formato do <span class="font-semibold">email</span> inválido',
+
+            'password.required' => 'É necessário informar uma <span class="font-semibold">senha</span>',
+            'password.string' => 'Formato da <span class="font-semibold">senha</span> inválida'
+        ];
     }
 }

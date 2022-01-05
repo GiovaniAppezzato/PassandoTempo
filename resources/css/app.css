@@ -1,3 +1,83 @@
-@import 'tailwindcss/base';
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* @import 'tailwindcss/base';
 @import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import 'tailwindcss/utilities'; */
+
+
+@layer components {
+    /* ===== Buttons ===== */
+    .button {
+        @apply flex justify-center items-center w-max cursor-pointer px-4 py-1 bg-indigo-500 text-white rounded-md shadow-md hover:bg-indigo-600 focus:outline-none focus:ring-2 ring-offset-2 ring-indigo-600 transition duration-200 ease-out select-none;
+    }
+
+    .button-danger {
+        @apply bg-red-500 hover:bg-red-600 ring-red-600 !important;
+    }
+
+    .button-warning {
+        @apply bg-orange-400 hover:bg-orange-500 ring-orange-500 !important;
+    }
+
+    .button-lg {
+        @apply px-5 py-2 !important;
+    }
+
+    .button-animate {
+        @apply hover:scale-105 !important;
+    }
+
+    /* ===== inputs ===== */
+    .input {
+        @apply border-gray-400 border-opacity-80 border rounded-md shadow w-full text-sm py-2 px-3 mt-1 transition duration-150 ease-out focus:outline-none;
+    }
+
+    .input-ring {
+        @apply focus:ring-3 ring-indigo-300 !important;
+    }
+
+    .label-form {
+        @apply block text-sm ml-1;
+    }
+
+    /* ===== Componente Modal ===== */
+    .modal-background {
+        @apply opacity-0 invisible z-30 fixed p-2 top-[0] left-[0] w-screen h-screen bg-stone-900 bg-opacity-30 flex justify-center transition duration-300 ease-out;
+    }
+
+    .modal-open {
+        @apply opacity-100 visible !important;
+    }
+
+    .modal {
+        @apply w-full h-max max-w-xl bg-white shadow-md rounded-md p-3 pb-4 border-l-4 border-indigo-400;
+    }
+
+    .modal-close {
+        @apply flex justify-end w-full;
+    }
+
+    .modal-content {
+        @apply mb-3 px-4;
+    }
+
+    .modal-header {
+        @apply w-full mb-2;
+    }
+
+    .modal-actions {
+        @apply flex justify-end my-2 px-4;
+    }
+}
+
+@layer utilities {
+    .icon-svg {
+        @apply stroke-gray-700 hover:stroke-gray-800 cursor-pointer;
+    }
+}

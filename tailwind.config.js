@@ -10,10 +10,15 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+                'sans': ['Quicksand', 'Roboto', ...defaultTheme.fontFamily.sans],
+                'ubuntu': ['Ubuntu', 'Nunito' , ...defaultTheme.fontFamily.sans],
+                'quicksand': ['Quicksand', ...defaultTheme.fontFamily.sans],
             },
+            ringWidth: {
+                '3': '3px',
+            }
         },
     },
 
-    plugins: [require('@tailwindcss/forms')],
+    // plugins: [require('@tailwindcss/forms')],
 };

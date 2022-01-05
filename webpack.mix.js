@@ -17,4 +17,7 @@ mix
         require('postcss-import'),
         require('tailwindcss'),
         require('autoprefixer'),
-    ]);
+    ])
+
+    .postCss('resources/css/state.css', 'public/css/app.css')
+    .version();

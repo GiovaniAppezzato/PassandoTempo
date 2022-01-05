@@ -21,9 +21,7 @@
                 @csrf
 
                 <div>
-                    <x-button>
-                        {{ __('Resend Verification Email') }}
-                    </x-button>
+                    <button class="button" type="submit" name="button">Resend Verification Email</button>
                 </div>
             </form>
 
@@ -37,3 +35,9 @@
         </div>
     </x-auth-card>
 </x-guest-layout>
+
+{{--
+<x-button>
+    {{ __('Resend Verification Email') }}
+</x-button>
+ --}}

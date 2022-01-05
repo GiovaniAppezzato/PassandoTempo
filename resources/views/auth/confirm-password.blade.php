@@ -15,22 +15,27 @@
 
         <form method="POST" action="{{ route('password.confirm') }}">
             @csrf
-
             <!-- Password -->
             <div>
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
+                <label class="label-form" for="password">Senha:</label>
+                <input class="input input-ring" type="password" name="password" required autocomplete="current-password">
             </div>
 
             <div class="flex justify-end mt-4">
-                <x-button>
-                    {{ __('Confirm') }}
-                </x-button>
+                <button class="button" type="submit" name="button">Confirm</button>
             </div>
         </form>
     </x-auth-card>
 </x-guest-layout>
+
+{{--
+<x-label for="password" :value="__('Password')" />
+<x-input id="password" class="block mt-1 w-full"
+                type="password"
+                name="password"
+                required autocomplete="current-password" />
+
+<x-button>
+    {{ __('Confirm') }}
+</x-button>
+ --}}
