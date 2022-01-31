@@ -1,8 +1,8 @@
-<x-auth-layout titulo="Página de cadastro - {{ env('APP_NAME') }}">
+<x-app-auth titulo="Página de cadastro - {{ env('APP_NAME') }}">
 
     <form class="w-full max-w-md h-max bg-white my-2 px-4 py-5 sm:px-6 shadow-lg rounded-lg" action="{{ $colaborador ? route('register').'?create=colaborador' : route('register') }}" method="POST">
         @csrf
-        <h1 class="text-center text-2xl text-gray-700 mb-1 font-[ubuntu]">Cadastrar</h1>
+        <h1 class="text-center text-2xl text-gray-700 font-medium mb-1">Cadastrar</h1>
 
         @if(!$colaborador)
             <div class="mb-2 flex justify-center">
@@ -30,7 +30,7 @@
             </div>
             <div class="w-full mb-2">
                 <label class="label-form" for="password_confirmation">Confirmar senha:</label>
-                <input class="input input-ring" id="password_confirmation" name="password_confirmation" type="password" required>
+                <input class="input input-rin" id="password_confirmation" name="password_confirmation" type="password" required>
             </div>
             <div class="w-full mb-2">
                 <label class="label-form" for="data_nascimento">Data de nascimento</label>
@@ -45,14 +45,14 @@
 
         <div class="flex flex-wrap justify-center">
             <button class="button w-full">Cadastrar</button>
-            <a class="px-4 py-1 mt-2 rounded-md hover:bg-gray-100 transition duration-200 ease-out" href="/">Voltar</a>
+            <a class="font-medium text-center text-gray-600 rounded transition duration-200 ease-out w-full px-4 py-1 mt-2 hover:bg-gray-100 hover:text-gray-800" href="/">Voltar</a>
         </div>
     </form>
 
     @if(!$colaborador)
-        <x-modal modal="colaborador" title="Aviso">
-            <p class="text-gray-700 indent-4">A conta colaborador além de todas as outras funcionalidades te possibilita também escrever publicações em nossa plataforma e criar tópicos de discussão, ficou curioso? Então junte-se a nós e venha fazer parte dessa comunidade.</p>
-            <p class="text-sm text-red-500 mt-2">Qualquer atitude que seja com intuito de estragar a expêriencia dos outros usuários pode resultar em banimento temporário ou permanente.</p>
+        <x-modal modal="colaborador" title="Aviso" position="top">
+            <p class="text-gray-700 indent-4">A conta <span class="text-indigo-500">colaborador</span> possibilita aos usuários criarem posts dentro da plataforma além de tópicos de discussão, ficou curioso? Então venha fazer parte dessa comunidade.</p>
+            <p class="text-sm text-red-500 mt-2"><span class="font-semibold">Atenção:</span> Qualquer atitude com propósito de estragar a expêriencia de outros usuários pode resultar em banimento.</p>
 
             <x-slot name="actions">
                 <a class="button" href="{{ route('register').'?create=colaborador' }}">Entendi</a>

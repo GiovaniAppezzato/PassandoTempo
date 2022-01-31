@@ -3,27 +3,175 @@
 | Classes obrigatórias - css
 |--------------------------------------------------------------------------
 |
-| Esse arquivo contém classes css que obrigatóriamente precisam ser
+| Esse arquivo contém classes CSS que obrigatóriamente precisam ser
 | compiladas e geradas no arquivo final para o funcionamento de
 | alguma parte do sistema.
 |
-| Modal - 14
+| Itens do arquivo:
+| 24 - Menu
+| 33 - Sidebar
+| 47 - Componente Modal
+| 73 - Checkbox-switch
+| 114 - Animação load - spin
+| 130 - Componente Toast
 |
 */
 
-.modal-open{
+.is-visible{
   visibility: visible !important;
   opacity: 1 !important;
 }
-.modal-success{
+
+/* ===== Menu IMPORTANTE ===== */
+.mobile-menu{
+  right: 0;
+  transition-property: color, right, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+  transition-property: color, right, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, right, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* ===== Sidebar IMPORTANTE ===== */
+@media (min-width: 992px){
+  .sidebar--collapse{
+    width: 4.5rem !important;
+  }
+  .content-page--expand{
+    margin-left: 4.5rem !important;
+  }
+}
+.sidebar-item--active{
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+}
+.sidebar-item--active > span, .sidebar-item--active > p{
+  border-bottom-width: 2px;
+  --tw-border-opacity: 1;
+  border-color: rgb(99 102 241 / var(--tw-border-opacity));
+}
+.sidebar-dropdown--active{
+    display: block !important;
+}
+
+/* ===== Componente MODAL ===== */
+.modal-show{
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+.modal-show > .modal {
+    transform: scale(1) !important;
+}
+.modal--top{
+  position: relative !important;
+  top: 4rem !important;
+  align-self: flex-start !important;
+}
+.modal--success{
   --tw-border-opacity: 1 !important;
   border-color: rgb(34 197 94 / var(--tw-border-opacity)) !important;
 }
-.modal-danger{
+.modal--danger{
   --tw-border-opacity: 1 !important;
   border-color: rgb(248 113 113 / var(--tw-border-opacity)) !important;
 }
-.modal-warning{
+.modal--warning{
   --tw-border-opacity: 1 !important;
   border-color: rgb(251 146 60 / var(--tw-border-opacity)) !important;
+}
+
+/* ===== checkbox-switch ===== */
+.checkbox-switch {
+    position: relative;
+    width: var(--tamanho-checkbox);
+    height: calc(var(--tamanho-checkbox) / 2);
+    appearance: none;
+    background: #d1d5db;
+    outline: none;
+    border-radius: 20px;
+    transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+    transition-duration: 300ms;
+    cursor: pointer;
+    box-shadow: inset 0 0 5px rgba(0,0,0,.2);
+
+    --tamanho-checkbox: 2rem;
+}
+.checkbox-switch:checked {
+    background: #818cf8;
+}
+.checkbox-switch:before {
+    content: '';
+    position: absolute;
+    width: calc(var(--tamanho-checkbox) / 2);
+    height: calc(var(--tamanho-checkbox) / 2);
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    transition: 0.3s;
+    transform: scale(1.1);
+    box-shadow: 0 2px 5px rgba(0,0,0,.2);
+}
+.checkbox-switch:checked:before {
+    left: calc(var(--tamanho-checkbox) / 2);
+}
+
+/* ===== Animate load ===== */
+@-webkit-keyframes spin{
+  to{
+    transform: rotate(360deg);
+  }
+}
+@keyframes spin{
+  to{
+    transform: rotate(360deg);
+  }
+}
+.animate-spin{
+  -webkit-animation: spin 1s linear infinite;
+          animation: spin 1s linear infinite;
+}
+
+/* ===== Componente Toast ===== */
+.toast-show {
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+}
+
+.toast--success{
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(187 247 208 / var(--tw-bg-opacity)) !important;
+  --tw-text-opacity: 1 !important;
+  color: rgb(21 128 61 / var(--tw-text-opacity)) !important;
+}
+.toast--danger{
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(254 202 202 / var(--tw-bg-opacity)) !important;
+  --tw-text-opacity: 1 !important;
+  color: rgb(239 68 68 / var(--tw-text-opacity)) !important;
+}
+.toast--warning{
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(254 215 170 / var(--tw-bg-opacity)) !important;
+  --tw-text-opacity: 1 !important;
+  color: rgb(249 115 22 / var(--tw-text-opacity)) !important;
+}
+
+[data-toast] {
+    visibility: hidden;
+    opacity: 0;
+    transition-property: all;
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+[data-toast="left"] {
+    transform: translateX(-2rem);
+}
+
+[data-toast="right"] {
+    transform: translateX(2rem);
 }

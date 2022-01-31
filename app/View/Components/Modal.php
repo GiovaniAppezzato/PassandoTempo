@@ -16,10 +16,10 @@ class Modal extends Component
 
     public function __construct(
         $modal = null,
-        $type = 'default',              // <-- ['default, ''success', 'danger', 'warning']
+        $type = 'default',                      // <-- ['default, ''success', 'danger', 'warning']
         $title = 'Atenção usuário',
-        $position = 'top',              // <-- ['top', 'center']
-        $typeClose = 'default')         // <-- ['default', 'square']
+        $position = 'center',                   // <-- ['center', 'top']
+        $typeClose = 'default')                 // <-- ['default', 'square']
     {
         $this->modal = $modal;
         $this->type = $type;

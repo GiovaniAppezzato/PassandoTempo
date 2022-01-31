@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Perfil;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -41,6 +42,21 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
             'data_nascimento' => $request->data_nascimento,
             'tipo_conta' => $request->tipo_conta,
+        ]);
+
+        $usuario_id = User::where('name', $request->name)->value('id');
+        $links = [];
+
+        foreach (Perfil::getLinksValidos() as $item) {
+            $links[$item] = null;
+        };
+
+        $perfil = Perfil::create([
+            'privado' => false,
+            'imagem_perfil' => null,
+            'descricao' => null,
+            'urls' => $links,
+            'user_id' => $usuario_id
         ]);
 
         event(new Registered($user));

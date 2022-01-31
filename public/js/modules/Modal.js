@@ -22,13 +22,13 @@ export default class Modal {
 
     abrirModal()
     {
-        this.elementoHTML.classList.add('modal-open');
+        this.elementoHTML.classList.add('modal-show');
         desativarScroll();
     }
 
     fecharModal()
     {
-        this.elementoHTML.classList.remove('modal-open');
+        this.elementoHTML.classList.remove('modal-show');
         ativarScroll();
     }
 }

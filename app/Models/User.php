@@ -22,7 +22,8 @@ class User extends Authenticatable
         'email',
         'password',
         'tipo_conta',
-        'data_nascimento'
+        'data_nascimento',
+        'imagem_perfil'
     ];
 
     /**
@@ -43,4 +44,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function perfil()
+    {
+        return $this->hasOne(Perfil::class, 'user_id');
+    }
 }

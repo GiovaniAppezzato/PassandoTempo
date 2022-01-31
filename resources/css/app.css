@@ -14,7 +14,7 @@
 @layer components {
     /* ===== Buttons ===== */
     .button {
-        @apply flex justify-center items-center w-max cursor-pointer px-4 py-1 bg-indigo-500 text-white rounded-md shadow-md hover:bg-indigo-600 focus:outline-none focus:ring-2 ring-offset-2 ring-indigo-600 transition duration-200 ease-out select-none;
+        @apply flex justify-center items-center w-max cursor-pointer px-4 py-1 bg-indigo-500 text-white font-medium rounded shadow-md hover:bg-indigo-600 focus:outline-none focus:ring-2 ring-offset-2 ring-indigo-600 transition duration-200 ease-out select-none;
     }
 
     .button-danger {
@@ -25,13 +25,6 @@
         @apply bg-orange-400 hover:bg-orange-500 ring-orange-500 !important;
     }
 
-    .button-lg {
-        @apply px-5 py-2 !important;
-    }
-
-    .button-animate {
-        @apply hover:scale-105 !important;
-    }
 
     /* ===== inputs ===== */
     .input {
@@ -43,41 +36,130 @@
     }
 
     .label-form {
-        @apply block text-sm ml-1;
+        @apply block text-sm font-medium ml-1;
     }
 
-    /* ===== Componente Modal ===== */
-    .modal-background {
-        @apply opacity-0 invisible z-30 fixed p-2 top-[0] left-[0] w-screen h-screen bg-stone-900 bg-opacity-30 flex justify-center transition duration-300 ease-out;
+    /* ===== input - Search ===== */
+    .search {
+        @apply w-full bg-gray-200 rounded-full flex p-1 shadow-lg;
     }
 
+    .search-icon {
+        @apply flex items-center px-2;
+    }
+
+    .search-input {
+        @apply flex-grow font-medium mx-1 p-1 rounded bg-transparent focus:outline-none md:mx-2;
+    }
+
+    /* ===== Componente Modal  ===== */
     .modal-open {
         @apply opacity-100 visible !important;
     }
 
+    .modal-background {
+        @apply opacity-0 invisible fixed top-[0] left-[0] w-full h-full z-50 flex justify-center p-2 bg-stone-900 bg-opacity-50 transition duration-300 ease-out
+    }
+
     .modal {
-        @apply w-full h-max max-w-xl bg-white shadow-md rounded-md p-3 pb-4 border-l-4 border-indigo-400;
+        @apply w-full h-max max-w-2xl scale-110 transition duration-200 ease-out p-3 pb-4 bg-white shadow-md rounded-md border-l-4 border-indigo-400 self-center;
     }
 
-    .modal-close {
-        @apply flex justify-end w-full;
+    .modal__close {
+        @apply flex justify-end mb-2;
     }
 
-    .modal-content {
-        @apply mb-3 px-4;
+    .modal__content {
+        @apply mb-3 px-4 max-h-[80vh] overflow-y-auto;
     }
 
-    .modal-header {
-        @apply w-full mb-2;
+    .modal__title {
+        @apply w-full mb-2 text-xl font-medium text-gray-700;
     }
 
-    .modal-actions {
-        @apply flex justify-end my-2 px-4;
+    .modal__actions {
+        @apply flex justify-end my-2;
+    }
+
+    .modal--top {
+        @apply relative top-[4rem];
+    }
+
+    .modal--top {
+        @apply relative top-[4rem] self-start !important;
+    }
+
+    /* ===== Conteúdo usuários ===== */
+    .content-user {
+        @apply w-full mb-8 sm:w-[calc(50%-0.6rem)] md:w-[calc(33.33%-0.6rem)] xl:w-[calc(25%-0.6rem)];
+    }
+
+    .content-user__view {
+        @apply bg-gray-200 flex justify-center items-center;
+    }
+
+    .content-user__image {
+        @apply bg-cover bg-center w-full h-full transition duration-200 hover:scale-[1.03] cursor-pointer;
+    }
+
+    .content-user__body {
+        @apply w-full px-2 mt-1;
+    }
+
+    .content-user__title {
+        display: -webkit-box;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+
+        @apply w-full h-[40px] text-sm text-gray-700 font-semibold select-none lg:select-text;
+    }
+
+    .content-user__description {
+        display: -webkit-box;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+
+        @apply w-full h-[38px] px-2 mt-1 text-[13px] text-gray-600 font-medium select-none lg:select-text;
+    }
+
+    .content-user__footer {
+        @apply w-full flex items-center flex-wrap mt-2;
+    }
+
+    /* ===== Toast ===== */
+    .toast {
+        @apply fixed top-[5rem] right-4 max-w-[calc(100%-1rem)] bg-zinc-800 text-white flex rounded shadow p-3;
     }
 }
 
 @layer utilities {
     .icon-svg {
         @apply stroke-gray-700 hover:stroke-gray-800 cursor-pointer;
+    }
+
+    .initial {
+        position: initial;
+    }
+
+    .truncate-2 {
+        display: -webkit-box;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+
+        @apply select-none lg:select-text;
+    }
+
+    .flex-centered {
+        @apply flex justify-center items-center;
+    }
+
+    .is-visible2 {
+        @apply visible opacity-100 !important;
     }
 }

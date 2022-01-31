@@ -9,10 +9,20 @@ module.exports = {
 
     theme: {
         extend: {
+            screens: {
+                'sm': '576px',
+                'md': '768px',
+                'lg': '992px',
+                'xl': '1280px',
+                '2xl': '1536px',
+            },
             fontFamily: {
                 'sans': ['Quicksand', 'Roboto', ...defaultTheme.fontFamily.sans],
-                'ubuntu': ['Ubuntu', 'Nunito' , ...defaultTheme.fontFamily.sans],
+                'ubuntu': ['Ubuntu', 'Quicksand' , ...defaultTheme.fontFamily.sans],
                 'quicksand': ['Quicksand', ...defaultTheme.fontFamily.sans],
+            },
+            colors: {
+                'dark': '#211F1F',
             },
             ringWidth: {
                 '3': '3px',
