@@ -54,7 +54,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const dropdownCollections = document.querySelectorAll('[data-toggle=dropdown]');
 
     dropdownCollections.forEach(item => {
-        item.addEventListener('click', ()=> item.nextElementSibling.classList.toggle('active-sublink'));
+        item.addEventListener('click', ()=> item.nextElementSibling.classList.toggle('dropdown--active'));
     });
 
     /* ===== Sidebar ===== */
@@ -65,7 +65,7 @@ window.addEventListener('DOMContentLoaded', () => {
         checkboxSidebar.checked = true;
         sidebarHTML.classList.add('sidebar--collapse');
         conteudoPagina.classList.add('content-page--expand');
-        alterarAltura(resizeColletions)
+        alterarAltura(resizeColletions);
         document.querySelectorAll('[data-sidebar=sublinks').forEach(sublink => sublink.classList.remove('sidebar-dropdown--active'));
     }
 
@@ -107,7 +107,6 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     textareaCollections.forEach(textarea => {
-        textarea.addEventListener("load", textAutoResize)
         textarea.addEventListener("input", textAutoResize)
     });
 

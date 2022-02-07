@@ -15,4 +15,9 @@ class PostagemController extends Controller
     {
         return view('postagem.show');
     }
+
+    public function create()
+    {
+        return view('postagem.create');
+    }
 }

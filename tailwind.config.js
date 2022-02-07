@@ -6,7 +6,9 @@ module.exports = {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
     ],
-
+    safelist: [
+        'animate-spin',
+    ],
     theme: {
         extend: {
             screens: {
@@ -15,6 +17,7 @@ module.exports = {
                 'lg': '992px',
                 'xl': '1280px',
                 '2xl': '1536px',
+                '3xl': '1820px',
             },
             fontFamily: {
                 'sans': ['Quicksand', 'Roboto', ...defaultTheme.fontFamily.sans],

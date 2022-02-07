@@ -22,6 +22,10 @@
   opacity: 1 !important;
 }
 
+.dropdown--active{
+    display: block !important;
+}
+
 /* ===== Menu IMPORTANTE ===== */
 .mobile-menu{
   right: 0;
@@ -116,22 +120,6 @@
 }
 .checkbox-switch:checked:before {
     left: calc(var(--tamanho-checkbox) / 2);
-}
-
-/* ===== Animate load ===== */
-@-webkit-keyframes spin{
-  to{
-    transform: rotate(360deg);
-  }
-}
-@keyframes spin{
-  to{
-    transform: rotate(360deg);
-  }
-}
-.animate-spin{
-  -webkit-animation: spin 1s linear infinite;
-          animation: spin 1s linear infinite;
 }
 
 /* ===== Componente Toast ===== */

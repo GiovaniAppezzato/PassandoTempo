@@ -19,5 +19,5 @@ mix
         require('autoprefixer'),
     ])
 
-    .postCss('resources/css/state.css', 'public/css/app.css')
+    .postCss('resources/css/modificadores.css', 'public/css/app.css')
     .version();

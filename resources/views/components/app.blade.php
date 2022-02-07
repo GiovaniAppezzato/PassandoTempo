@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="author" content="PassandoTempo">
     <meta name="description" content="Além de ficar sabendo sobre tudo o que está por vir, converse e compartilhe sobre suas experiências de filmes, séries, jogos e muito mais.">
-    <meta name="keywords" content="Blog, Filmes, Jogos, PassandoTempo, Experiências, Compartilhe">
+    <meta name="keywords" content="Blog, Filmes, Jogos, Animes, PassandoTempo, Experiências, Compartilhe">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -12,7 +12,7 @@
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('imagens/icons/i-awesome/all.min.css') }}">
-    {{ $extrasCSS ?? '' }}
+    {{ $css ?? '' }}
 </head>
 <body>
 
@@ -39,6 +39,6 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/jquery-360.js') }}"></script>
     <script type="module" src="{{ asset('js/frontend.js')}}" charset="utf-8"></script>
-    {{ $extrasScripts ?? '' }}
+    {{ $script ?? '' }}
 </body>
 </html>

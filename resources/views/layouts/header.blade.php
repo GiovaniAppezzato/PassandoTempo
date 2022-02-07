@@ -9,7 +9,9 @@
     </label>
 
     <nav class="fixed z-30 top-0 right-[-100%] w-[calc(100%-4rem)] h-full bg-zinc-800 drop-shadow-lg shadow sm:w-96 lg:initial lg:w-full lg:grow lg:bg-transparent lg:shadow-none select-none" id="menu">
-        <div class="w-full h-[60px] p-4 flex justify-end items-center lg:hidden">
+        <div class="w-full h-[60px] p-4 flex justify-between items-center lg:hidden">
+            <span class="text-white">Menu</span>
+
             <label for="checkbox-menu">
                 <svg class="stroke-white cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </label>
@@ -21,41 +23,51 @@
             <ul class="text-center capitalize mx-4 mt-2 lg:mt-0 lg:mx-0 lg:flex lg:items-center lg:gap-2">
                 @auth
                     {{-- imagem perfil MOBILE --}}
-                    <li class="lg:hidden my-4">
+                    <li class="lg:hidden mt-4 mb-8">
                         @if(Auth::user()->perfil->imagem_perfil !== null)
-                            <div class="w-24 h-24 bg-cover bg-center mx-auto rounded-full shadow-lg md:w-28 md:h-28 lg:hidden" style="background: url({{ asset('storage/perfil/' . Auth::user()->perfil->imagem_perfil) }}) center/cover no-repeat;"></div>
+                                <div class="w-24 h-24 bg-cover bg-center mx-auto rounded-full shadow-lg md:w-28 md:h-28 lg:hidden" style="background: url({{ asset('storage/perfil/' . Auth::user()->perfil->imagem_perfil) }}) center/cover no-repeat;"></div>
                         @else
                             <div class="w-24 h-24 mx-auto bg-gray-100 rounded-full flex justify-center items-center shadow-lg md:w-28 md:h-28 lg:hidden">
                                 <i class="text-2xl text-zinc-800 fas fa-user"></i>
                             </div>
                         @endif
-                        <h1 class="text-center text-white font-semibold truncate mt-2 lg:hidden">
+                        <h1 class="text-center text-white font-medium truncate mt-2 lg:hidden">
                             <a href="{{ route('perfil.show', Auth::user()->name) }}">{{ Auth::user()->name }}</a>
                         </h1>
                     </li>
                 @endauth
 
                 <li class="mb-2 lg:mb-0 lg:hidden">
-                    <a class="block w-full py-2 font-medium text-white rounded hover:bg-zinc-900 hover:bg-opacity-30 lg:m-0 lg:p-0 lg:hover:bg-transparent lg:text-gray-300 lg:hover:text-white lg:focus:outline-none lg:focus:text-white" href="{{ route('index') }}">Biblioteca</a>
+                    <a class="block w-full py-2 text-white rounded hover:bg-zinc-900 hover:bg-opacity-30 lg:m-0 lg:p-0 lg:hover:bg-transparent lg:text-gray-300 lg:hover:text-white lg:focus:outline-none lg:focus:text-white" href="{{ route('index') }}">Biblioteca</a>
                 </li>
                 <li class="mb-2 lg:mb-0 lg:hidden">
-                    <div class="block w-full py-2 font-medium text-white rounded cursor-pointer hover:bg-zinc-900 hover:bg-opacity-30 lg:m-0 lg:p-0 lg:hover:bg-transparent lg:text-gray-300 lg:hover:text-white lg:focus:outline-none lg:focus:text-white" href="#" data-sidebar="link-collapse">
+                    <div class="block w-full py-2 text-white rounded cursor-pointer hover:bg-zinc-900 hover:bg-opacity-30 lg:m-0 lg:p-0 lg:hover:bg-transparent lg:text-gray-300 lg:hover:text-white lg:focus:outline-none lg:focus:text-white" href="#" data-sidebar="link-collapse">
                         Usuário
                     </div>
                     <ul class="hidden mx-2 mt-1 text-sm" data-sidebar="sublinks">
                         @auth
-                            <a class="block text-sm text-gray-200 py-2 rounded" href="#">Adicionar publicação</a>
                             <a class="block text-sm text-gray-200 py-2 rounded" href="{{ route('perfil.show', Auth::user()->name) }}">Meu perfil</a>
+                            <a class="block text-sm text-gray-200 py-2 rounded" href="{{ route('postagem.create') }}">Adicionar postagem</a>
                         @else
-                            <div class="block font-medium text-gray-200 py-2">Nenhuma conta autenticada</dov>
+                            <div class="block text-gray-200 py-2">Nenhuma conta autenticada</dov>
                         @endauth
                     </ul>
                 </li>
                 <li class="mb-2 lg:mb-0 lg:hidden">
-                    <a class="block w-full py-2 font-medium text-white rounded hover:bg-zinc-900 hover:bg-opacity-30 lg:m-0 lg:p-0 lg:hover:bg-transparent lg:text-gray-300 lg:hover:text-white lg:focus:outline-none lg:focus:text-white" href="#">
-                        Configurações
+                    <a class="block w-full py-2  text-white rounded hover:bg-zinc-900 hover:bg-opacity-30 lg:m-0 lg:p-0 lg:hover:bg-transparent lg:text-gray-300 lg:hover:text-white lg:focus:outline-none lg:focus:text-white" href="#">
+                        Aleatório
                     </a>
                 </li>
+                {{-- <li class="mb-2 lg:mb-0 lg:hidden">
+                    <a class="block w-full py-2  text-white rounded hover:bg-zinc-900 hover:bg-opacity-30 lg:m-0 lg:p-0 lg:hover:bg-transparent lg:text-gray-300 lg:hover:text-white lg:focus:outline-none lg:focus:text-white" href="#">
+                        Notificações
+                    </a>
+                </li> --}}
+                {{-- <li class="mb-2 lg:mb-0 lg:hidden">
+                    <a class="block w-full py-2 text-white rounded hover:bg-zinc-900 hover:bg-opacity-30 lg:m-0 lg:p-0 lg:hover:bg-transparent lg:text-gray-300 lg:hover:text-white lg:focus:outline-none lg:focus:text-white" href="#">
+                        Configurações
+                    </a>
+                </li> --}}
             </ul>
 
             <ul class="text-center mx-4 lg:mx-0 lg:flex lg:items-center lg:gap-2">
