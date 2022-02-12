@@ -1,6 +1,6 @@
 <header class="fixed w-full max-h-[60px] shadow-md z-30 flex justify-between items-center p-4 bg-gradient-to-b from-[#292626] to-dark lg:px-6">
-    <div class="font-bold text-lg text-white select-none lg:pr-4">
-        <a href="{{ route('index') }}">{{ env('APP_NAME') }}</a>
+    <div class="lg:pr-4">
+        <a class="font-semibold text-lg text-white select-none " href="{{ route('index') }}">{{ env('APP_NAME') }}</a>
     </div>
 
     <label class="lg:hidden cursor-pointer" for="checkbox-menu">
@@ -31,7 +31,7 @@
                                 <i class="text-2xl text-zinc-800 fas fa-user"></i>
                             </div>
                         @endif
-                        <h1 class="text-center text-white font-medium truncate mt-2 lg:hidden">
+                        <h1 class="text-center text-white truncate mt-2 lg:hidden">
                             <a href="{{ route('perfil.show', Auth::user()->name) }}">{{ Auth::user()->name }}</a>
                         </h1>
                     </li>
@@ -73,19 +73,19 @@
             <ul class="text-center mx-4 lg:mx-0 lg:flex lg:items-center lg:gap-2">
             @guest
                 <li class="mb-2 lg:mb-0">
-                    <a class="block py-2 font-medium text-white bg-indigo-500 rounded hover:bg-indigo-600 lg:m-0 lg:px-5 lg:py-1 lg:font-semibold lg:bg-indigo-600 lg:hover:bg-indigo-700 lg:rounded-full lg:shadow-inner lg:transition lg:duration-200 lg:ease-out lg:focus:ring-3 lg:ring-indigo-500 lg:focus:outline-none" href="{{ route('login') }}">
+                    <a class="block py-2 text-white bg-indigo-500 rounded hover:bg-indigo-600 lg:m-0 lg:px-5 lg:py-1 lg:font-semibold lg:bg-indigo-600 lg:hover:bg-indigo-700 lg:rounded-full lg:shadow-inner lg:transition lg:duration-200 lg:ease-out lg:focus:ring-3 lg:ring-indigo-500 lg:focus:outline-none" href="{{ route('login') }}">
                         Fazer Login
                     </a>
                 </li>
                 <li class="mb-2 lg:mb-0">
-                    <a class="block py-2 font-medium text-white bg-indigo-500 rounded hover:bg-indigo-600 lg:m-0 lg:px-5 lg:py-1 lg:font-semibold lg:bg-indigo-600 lg:hover:bg-indigo-700 lg:rounded-full lg:shadow-inner lg:transition lg:duration-200 lg:ease-out lg:focus:ring-3 lg:ring-indigo-500 lg:focus:outline-none" href="{{ route('register') }}">
+                    <a class="block py-2 text-white bg-indigo-500 rounded hover:bg-indigo-600 lg:m-0 lg:px-5 lg:py-1 lg:font-semibold lg:bg-indigo-600 lg:hover:bg-indigo-700 lg:rounded-full lg:shadow-inner lg:transition lg:duration-200 lg:ease-out lg:focus:ring-3 lg:ring-indigo-500 lg:focus:outline-none" href="{{ route('register') }}">
                         Criar conta
                     </a>
                 </li>
             @endguest
             @auth
                 <li class="mb-2 lg:mb-0">
-                    <button class="block w-full py-2 font-medium text-white bg-red-500 rounded lg:m-0 lg:p-0 lg:bg-transparent lg:text-gray-300 lg:hover:text-white lg:focus:text-red-500 focus:outline-none box-border" data-target="logout">Desconectar</button>
+                    <button class="block w-full py-2 text-white bg-red-500 rounded lg:m-0 lg:p-0 lg:bg-transparent lg:text-gray-300 lg:hover:text-white lg:focus:text-red-500 focus:outline-none box-border" data-target="logout">Desconectar</button>
                 </li>
 
                 {{-- imagem perfil DESKTOP --}}
@@ -112,7 +112,8 @@
             <p class="text-gray-700">Você está quase desconectando da sua conta, tem certeza disso?</p>
 
             <x-slot name="actions">
-                <form class="" action="{{ route('logout') }}" method="POST"> @csrf
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
                     <button type="submit" class="button button-danger" type="button">Tenho Certeza</button>
                 </form>
             </x-slot>

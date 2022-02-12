@@ -1,0 +1,14 @@
+.ce-code__textarea {
+    font-family: 'Quicksand', sans-serif !important;
+    color: #41314e;
+    line-height: 1.5em;
+    font-size: 14px;
+    background: #f8f7fa;
+    border: 2px solid #f1f1f4;
+    box-shadow: none;
+    white-space: pre;
+    word-wrap: normal;
+    overflow-x: auto;
+    overflow-y: hidden;
+    resize: none;
+}

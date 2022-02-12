@@ -20,4 +20,10 @@ mix
     ])
 
     .postCss('resources/css/modificadores.css', 'public/css/app.css')
+    .postCss('resources/css/postagem.css', 'public/css/postagem.css')
+    .js('resources/js/postagem/Editor.js', 'public/js/postagem/Editor.js')
+
+    /* RUN TERMINAL: "npx mix"
+    .copyDirectory('node_modules/@fortawesome/fontawesome-free/js', 'public/fontawesome/js')
+     */
     .version();

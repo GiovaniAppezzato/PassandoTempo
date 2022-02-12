@@ -2,17 +2,37 @@
        sidebarLoaded="expand" sidebarActive="#usuario">
 
     {{-- HTML aqui --}}
-    <div class="mx-4 lg:mx-6">
-        
+    <div class="">
+        <div class="flex justify-between items-center bg-gray-100 p-2 px-4 w-100 h-16 lg:px-6">
+            <x-progress-bar />
+
+            <button class="button gap-1" type="button" data-target="info-create">
+                <span class="hidden sm:block">Quero</span> ajuda <i class="fa-solid fa-triangle-exclamation"></i>
+            </button>
+        </div>
+
+        <div>
+            <div>
+                {{-- START --}}
+            </div>
+            <div>
+                {{-- PRIMEIRAS CONFIGURAÇÕES --}}
+            </div>
+            <div>
+                {{-- CONTÉUDO PRINCIPAL --}}
+            </div>
+            <div>
+                {{-- FINALIZAÇÃO --}}
+            </div>
+        </div>
     </div>
 
+    {{-- MODAL HELP --}}
+    <x-modal modal="info-create" title="Olá colaborador" position="top">
 
-    {{--
-        Requisitos da página:
-        - Quill editor -> personalizar css TMB
-        - Fazer um preview JS
-        - Enviar DELTA/JSON via Ajax
-        - Manter tamanho(width) do container parecido ou igual ao do show.blade.php
-    --}}
+        <div class="">
+            FAZER SLIDER EXPLICANDO...
+        </div>
 
+    </x-modal>
 </x-app>

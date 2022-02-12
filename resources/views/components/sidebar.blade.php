@@ -28,10 +28,10 @@
                 </div>
                 <ul class="hidden mx-2 mt-2 text-sm" data-sidebar="sublinks">
                     @auth
-                        <a class="block px-3 font-medium py-2 hover:bg-gray-200 rounded" href="{{ route('perfil.show', Auth::user()->name) }}">Meu perfil</a>
-                        <a class="block px-3 font-medium py-2 hover:bg-gray-200 rounded" href="{{ route('postagem.create') }}">Adicionar postagem</a>
+                        <a class="block px-3 py-2 hover:bg-gray-200 rounded" href="{{ route('perfil.show', Auth::user()->name) }}">Meu perfil</a>
+                        <a class="block px-3 py-2 hover:bg-gray-200 rounded" href="{{ route('postagem.create') }}">Adicionar postagem</a>
                     @else
-                        <div class="block px-3 font-medium py-2">Nenhuma conta autenticada</dov>
+                        <div class="block px-3 py-2">Nenhuma conta autenticada</dov>
                     @endauth
                 </ul>
             </li>
