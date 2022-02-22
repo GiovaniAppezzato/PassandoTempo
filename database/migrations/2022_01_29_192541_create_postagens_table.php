@@ -16,7 +16,7 @@ class CreatePostagensTable extends Migration
         Schema::create('postagens', function (Blueprint $table) {
             $table->id();
             $table->string('titulo', 150);
-            $table->string('descricao');
+            $table->string('descricao', 560);
             $table->string('hash', 128);
             $table->json('conteudo');
             $table->string('imagem_postagem');

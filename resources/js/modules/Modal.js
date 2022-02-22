@@ -1,5 +1,7 @@
-import { ativarScroll, desativarScroll } from "../frontend.js";
-
+/**
+ * Instanciar e controllar o comportamento dos modais.
+ * @param  {[HTML]} elementoHTML
+ */
 export default class Modal {
     constructor(elementoHTML)
     {
@@ -23,12 +25,16 @@ export default class Modal {
     abrirModal()
     {
         this.elementoHTML.classList.add('modal-show');
-        desativarScroll();
+
+        document.body.style.overflow = 'hidden';
+        document.body.scroll = "no";
     }
 
     fecharModal()
     {
         this.elementoHTML.classList.remove('modal-show');
-        ativarScroll();
+
+        document.body.style.overflow = 'auto';
+        document.body.scroll = "yes";
     }
 }
