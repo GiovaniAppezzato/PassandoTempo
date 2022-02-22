@@ -40,7 +40,7 @@ class PerfilController extends Controller
     {
         try {
             $usuarioLogado = auth()->user();
-            $donoPerfil = User::whsdadasdere('name', $nome)->first();
+            $donoPerfil = User::where('name', $nome)->first();
 
             if($usuarioLogado == $donoPerfil) {
                 /* ===== Tratando os dados ===== */
