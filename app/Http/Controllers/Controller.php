@@ -12,7 +12,7 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     const MESSAGES = [
-        'error_system' => 'Ocorreu um erro no sistema ...',
+        'error_system' => 'Eita... ocorreu um erro no sistema',
     ];
 
     public function notify_error():void

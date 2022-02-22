@@ -21,7 +21,10 @@ mix
 
     .postCss('resources/css/modificadores.css', 'public/css/app.css')
     .postCss('resources/css/postagem.css', 'public/css/postagem.css')
-    .js('resources/js/postagem/Editor.js', 'public/js/postagem/Editor.js')
+
+    .js('resources/js/frontend.js', 'public/js')
+    .js('resources/js/usuario/editar-perfil.js', 'public/js/usuario')
+    .js('resources/js/postagem/create.js', 'public/js/postagem/create.js')
 
     /* RUN TERMINAL TO COPY: "npx mix"
     .copyDirectory('node_modules/@fortawesome/fontawesome-free/js', 'public/fontawesome/js')

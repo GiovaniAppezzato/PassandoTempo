@@ -1,6 +1,8 @@
 {
-    "/js/app.js": "/js/app.js?id=2c4b20fd5c074c42a5f6",
-    "/js/postagem/Editor.js": "/js/postagem/Editor.js?id=127e734a229b96b7800e",
-    "/css/app.css": "/css/app.css?id=772a96e26dc6b0c77bc7",
-    "/css/postagem.css": "/css/postagem.css?id=0b1cea7a76aee2e1dc0a"
+    "/js/app.js": "/js/app.js?id=ebebbf59bff459ff48db",
+    "/js/frontend.js": "/js/frontend.js?id=cf1079a132cdd07c7328",
+    "/js/usuario/editar-perfil.js": "/js/usuario/editar-perfil.js?id=3ed790b9df53bd50718c",
+    "/js/postagem/create.js": "/js/postagem/create.js?id=f3bd7533f3b139083631",
+    "/css/app.css": "/css/app.css?id=4c377cfa78b1c00f7883",
+    "/css/postagem.css": "/css/postagem.css?id=310c60d361ed57b4447a"
 }

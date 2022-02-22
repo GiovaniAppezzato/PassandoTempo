@@ -19,6 +19,10 @@ use App\Http\Controllers\PerfilController;
 Route::get('/', [PostagemController::class, 'index'])->name('index');
 Route::get('/pesquisa', [PostagemController::class, 'search'])->name('postagem.search');
 
+Route::get('/playground', function() {
+    return "Playground";
+});
+
 Route::get('/postagem', [PostagemController::class, 'show'])->name('postagem.show');
 
 Route::middleware(['auth'])->group(function() {
