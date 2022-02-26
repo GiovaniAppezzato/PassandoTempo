@@ -14,6 +14,22 @@
     padding-bottom: 150px !important;
 }
 
+.ct {
+    display: none;
+}
+
+.ce-block__content {
+    max-width: 750px !important;
+}
+
+.ce-toolbar__content {
+    max-width: 750px !important
+}
+
+.cdx-loader::before {
+    border-left-color: #6366f1 !important;
+}
+
 h1[class="ce-header"] {
     font-size: 1.3rem;
     color: var(--colorText);
@@ -61,7 +77,9 @@ h3[class="ce-header"] {
     border-color: #818cf8;
 }
 
-@media (min-width: 768px)
+@media (min-width: 992px)
 {
-    /* RESPONSIVO */
+    .ct {
+        display: block;
+    }
 }

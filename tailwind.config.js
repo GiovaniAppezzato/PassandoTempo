@@ -22,7 +22,6 @@ module.exports = {
             },
             fontFamily: {
                 'sans': ['Quicksand', 'Roboto', ...defaultTheme.fontFamily.sans],
-                'ubuntu': ['Ubuntu', 'Quicksand' , ...defaultTheme.fontFamily.sans],
                 'quicksand': ['Quicksand', ...defaultTheme.fontFamily.sans],
             },
             colors: {

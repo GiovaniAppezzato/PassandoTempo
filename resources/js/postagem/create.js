@@ -2,92 +2,108 @@ import Editor from './Editor.js';
 import { resize } from '../modules/resize.js';
 
 $(document).ready(() => {
-    /**
-     * iniciando EditorJS
-     */
-    const editor = new Editor({id: 'article'});
 
     const controller = {
         initiated: false,
-        step: null,
-        stepLength: $('[data-wrapper]').length,
+        transition: 200,
 
         concluded: {
-            'titulo': false,
-            'descrição': false,
-            'imagem': false,
-            'tema': false,
-            'conteudo': false
+            'titulo': null,
+            'descricao': null,
+            'imagem': null,
+            'tema': null,
+            'conteudo': null
         },
 
         wrappers: {
             init: $('#init'),
-            1: $('[data-wrapper="1"]'),
-            2: $('[data-wrapper="2"]'),
-            3: $('[data-wrapper="3"]'),
+            create: $('#create'),
+            preview: $('#preview'),
             result: $('#result')
-        }
+        },
+
+        currentWrapper: $('#init')
     }
 
     controller.required = Object.keys(controller.concluded).length;
 
-    $('#initButton').click(() => {
-        controller.initiated = true;
-        controller.step = 1;
-
-        controller.wrappers.init.fadeOut(300);
-
-        setTimeout(() => {
-            controller.wrappers[controller.step].fadeIn();
-            $('#wrapperActions').removeClass('hidden');
-
-            resize(document.querySelectorAll('#wrapper_preview'), '16:9');
-        }, 300);
-
-        $('#currentStep').text(`Etapa Atual: ${controller.step}`);
+    /**
+     * iniciando EditorJS
+     */
+    const editor = new Editor({
+        id: 'article',
+        onChange: (api, event) => changeArticle()
     });
 
     /**
-     * @param  {[boolean]} option ['true' => avançar, 'false' => retornar]
+     * Trocar wrapper atual.
+     * @param  {[property||Element Jquery]} nextWrapper
      */
-    function change(option)
+    function change(nextWrapper)
     {
-        /**
-         * atualizar controlador
-         * avançar ou retroceder view/wrapper
-         */
-
-        const currentStep = option ? controller.step + 1 : controller.step - 1;
-
-        controller.wrappers[controller.step].fadeOut(300);
+        controller.currentWrapper.fadeOut(controller.transition);
 
         setTimeout(() => {
-            controller.wrappers[currentStep].fadeIn();
+            nextWrapper.fadeIn(controller.transition);
             resize(document.querySelectorAll('#wrapper_preview'), '16:9');
-        }, 300);
 
-        controller.step = currentStep;
-        $('#currentStep').text(`Etapa Atual: ${currentStep}`);
+        }, controller.transition);
+
+        controller.currentWrapper = nextWrapper;
     }
 
     /**
-     * Atualizar a barra de progresso
+     * Salvar POSTAGEM
+     */
+    function save()
+    {
+        const data = controller.concluded;
+        console.log(data)
+
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: '/postagem/store',
+            type: 'POST',
+
+            data: {
+                titulo: data.titulo,
+                descricao: data.descricao,
+                imagem: data.imagem,
+                tema: data.tema,
+                conteudo: JSON.stringify(data.conteudo),
+            },
+            dataType: 'JSON',
+
+            success: (response) => console.log(response)
+        });
+    }
+
+    /**
+     * Atualizar progresso do usuário.
      */
     function update()
     {
-        let concluded =  Object.values(controller.concluded);
-        concluded = concluded.filter(item => { return item ? true : false }).length;
+        let concluido = Object.values(controller.concluded)
+            concluido = concluido.filter(item => { return item !== null ? true : false }).length;
 
-        const value = ((concluded / controller.required) * 100).toString();
+        const porcentagem = ((concluido / controller.required) * 100).toString().substring(0, 3);
 
-        $('#progressBar').css('width', `${value}%`);
-        $('#progressNumber').html(`${value}%`);
+        $('#progressBar').css('width', `${porcentagem}%`);
+        $('#progressNumber').html(`${porcentagem}%`);
+
+        $('#currentProgress').html(`Concluido ${concluido} de ${controller.required}`);
     }
 
-    $('#nextButton').click(() => change(true));
-    $('#previousButton').click(() => change(false));
+    $('#initButton').click(() => {
+        controller.initiated = true;
 
-    function accountant(length, seletor, maxLength)
+        change(controller.wrappers['create']);
+        update();
+    });
+
+    function accountant(seletor, length, maxLength)
     {
         if(length >= maxLength) {
             $(seletor).html(`Máximo de Caracteres <i class="fa-solid fa-triangle-exclamation"></i>`);
@@ -99,35 +115,49 @@ $(document).ready(() => {
     }
 
     $('#title').keyup(function() {
-        const length = this.value.length;
-        accountant(length, '#titleCount', 180);
+        const value  = this.value.trim();
+        const length = value.length;
 
-        if(length >= 10 && length <= 180) {
-            controller.concluded['titulo'] = true
-        } else {
-            controller.concluded['titulo'] = false
-        }
+        accountant('#titleCount', length, 180);
+
+        length >= 10 && length <= 180
+            ? controller.concluded['titulo'] = this.value
+            : controller.concluded['titulo'] = null
 
         update();
     })
 
     $('#description').keyup(function() {
-        const length = this.value.length;
-        accountant(length, '#descriptionCount', 560);
+        const value  = this.value.trim();
+        const length = value.length;
 
-        if(length >= 25 && length <= 560) {
-            controller.concluded['descrição'] = true
-        } else {
-            controller.concluded['descrição'] = false
-        }
+        accountant('#descriptionCount', length, 560);
+
+        length >= 25 && length <= 560
+            ? controller.concluded['descricao'] = this.value
+            : controller.concluded['descricao'] = null
 
         update();
     })
 
+    $('input[name="tema"]').change(function() {
+        const classes = 'bg-indigo-500 text-white ring-2';
+
+        controller.concluded['tema'] = this.value;
+        update();
+
+        $('input[name="tema"]').each((index, radio) => {
+            const label = $(`[for=${$(radio).attr('id')}]`);
+            this == radio ? label.addClass(classes) : label.removeClass(classes) ;
+        });
+
+        $('#currentTema').html(`Tema selecionado: ${this.value}`);
+    });
+
     $('#imagem_postagem').change(function() {
         const hasFile = this.files[0] || false;
 
-        if(hasFile) {
+        if (hasFile) {
             const preview = document.createElement('img')
             const src = URL.createObjectURL(hasFile);
 
@@ -139,28 +169,27 @@ $(document).ready(() => {
                  $('#preview_imagem').html(preview);
             };
 
-            controller.concluded['imagem'] = true;
+            // controller.concluded['imagem'] = this.files[0];
+            controller.concluded['imagem'] = $(this).val().split('\\').pop();
+
         } else {
             $('#preview_imagem').html('<i class="text-2xl text-gray-600 fa-solid fa-image"></i>');
-            controller.concluded['imagem'] = false;
+            controller.concluded['imagem'] = null;
         }
 
-        update()
+        update();
     })
 
-    $('input[name="tema"]').change(function() {
-        const classes = 'bg-indigo-500 text-white ring-2';
+    async function changeArticle()
+    {
+        const data = await editor.getContent();
 
-        $('#temaSelecionado').html(`Tema selecionado: ${this.value}`);
+        data.blocks.length > 0
+            ? controller.concluded['conteudo'] = data
+            : controller.concluded['conteudo'] = null;
 
-        $('input[name="tema"]').each((index, radio) => {
-            const label = $(`[for=${$(radio).attr('id')}]`);
-            this == radio ? label.addClass(classes) : label.removeClass(classes) ;
-        });
+        update();
+    }
 
-        controller.concluded['tema'] = true;
-        update()
-    });
-
-    $('#buttonContent').click(() => editor.getContent())
+    $('#save').click(() => save())
 });

@@ -84,50 +84,6 @@
                         <a class="button w-full px-6 sm:w-max sm:px-6" href="/postagem?post=e8578e0a630782c6cb7a475c4b9cb5e68f8906ae">Ver</a>
                     </div>
                 </article>
-
-                <article class="content-user">
-                    <div class="content-user__view" data-resize="16:9">
-                        <div class="content-user__image" style="background-image: url({{ asset('storage/postagem/imagem06.jpg') }})"></div>
-                    </div>
-                    <div class="content-user__body">
-                        <p class="content-user__title">A segunda temporada de The Witcher já tem data?</p>
-                        <p class="content-user__description">com a chegada da franquia ao cinema junto com o seu tremendo sucesso, muitos estão se perguntando</p>
-                    </div>
-                    <div class="content-user__footer">
-                        <a class="button w-full sm:w-max sm:px-6" href="#">Ver</a>
-                    </div>
-                </article>
-
-                <article class="content-user">
-                    <div class="content-user__view" data-resize="16:9">
-                        <div class="content-user__image" style="background-image: url({{ asset('storage/postagem/imagem07.jpg') }})"></div>
-                    </div>
-                    <div class="content-user__body">
-                        <p class="content-user__title">A segunda temporada de The Witcher já tem data?</p>
-                        <p class="content-user__description">com a chegada da franquia ao cinema junto com o seu tremendo sucesso, muitos estão se perguntando</p>
-                    </div>
-                    <div class="content-user__footer">
-                        <a class="button w-full sm:w-max sm:px-6" href="#">Ver</a>
-                    </div>
-                </article>
-
-                <article class="content-user">
-                    <div class="content-user__view" data-resize="16:9">
-                        <div class="content-user__image" style="background-image: url({{ asset('storage/postagem/imagem08.jpg') }})"></div>
-                    </div>
-                    <div class="content-user__body">
-                        <p class="content-user__title">A segunda temporada de The Witcher já tem data?</p>
-                        <p class="content-user__description">com a chegada da franquia ao cinema junto com o seu tremendo sucesso, muitos estão se perguntando</p>
-                    </div>
-                    <div class="content-user__footer">
-                        <a class="button w-full sm:w-max sm:px-6" href="#">Ver</a>
-                    </div>
-                </article>
-
-                <div class="w-full">
-                    <div class="w-full h-1 bg-gray-100 rounded mb-1"></div>
-                    <button class="w-full p-2 text-center text-gray-400 rounded hover:bg-gray-100 hover:text-gray-600" type="button">Mostrar mais</button>
-                </div>
             </div>
         </div>
     @else
@@ -184,7 +140,9 @@
                             Deixar o perfil PRIVADO: <input class="checkbox-switch ml-2" type="checkbox" name="privado" value="1" {{ $usuario->perfil->privado ? 'checked' : '' }}>
                         </div>
                         <div>
-                            <h3 class="mb-2">Coloque alguns links: <span class="text-sm text-gray-400">(Copie e cole a URL)</span> </h3>
+                            <h3 class="mb-2">
+                                Coloque alguns links: <span class="text-sm text-gray-400">(Copie e cole a URL)</span>
+                            </h3>
 
                             @foreach (\App\Models\Perfil::getLinksValidos() as $link)
                                 <div class="w-full flex items-center border-2 border-gray-400 rounded-full px-2 py-1 shadow mb-2">
@@ -194,7 +152,9 @@
                             @endforeach
                         </div>
 
-                        <div class="text-sm sm:text-right">Alguma sugestão? deixe sua mensagem <a class="text-blue-600" href="#">aqui.</a></div>
+                        <div class="text-sm sm:text-right">
+                            Alguma sugestão? deixe sua mensagem <a class="text-blue-600" href="#">aqui.</a>
+                        </div>
                     </div>
                 </div>
 

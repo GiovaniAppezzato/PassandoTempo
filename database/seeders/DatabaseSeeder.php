@@ -13,6 +13,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        /**
+         * Comando: "php artisan db:seed" ou "php artisan db:seed --class=AlgumSeeder"
+         */
+        $this->call([
+            UserSeeder::class,
+            PostagemSeeder::class
+        ]);
     }
 }

@@ -5,8 +5,8 @@
                                             rounded-full bg-gray-200 shadow-md"]) }}>
 
         <span class="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] z-[1]
-                     text-[10px] text-gray-400">
-            Progresso
+                     text-[9px] font-bold text-gray-400">
+            {{-- Progresso --}}
         </span>
 
         <div id="progressBar" class="w-0 h-full flex justify-center items-center overflow-hidden relative z-[2]

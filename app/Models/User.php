@@ -44,9 +44,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
+    
     public function perfil()
     {
         return $this->hasOne(Perfil::class, 'user_id');
+    }
+
+    /**
+     * Pegar todos as postagens do usuário
+     */
+    public function postagens()
+    {
+        return $this->hasMany(Postagem::class, 'user_id');
     }
 }

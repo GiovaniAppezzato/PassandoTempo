@@ -17,7 +17,7 @@
 
     @include('layouts.header')
 
-    <main class="pt-[60px] min-h-[100vh] max-w-[100%] relative">
+    <main class="pt-[60px] min-h-[100vh] max-w-[100vw] relative">
         <x-sidebar sidebarLoaded="{{ $sidebarLoaded }}" sidebarActive="{{ $sidebarActive }}" />
 
         <div class="lg:ml-[16rem] xl:ml-[18rem] {{ $sidebarLoaded == 'collapse' ? 'content-page--expand' : '' }}" id="contentPage">

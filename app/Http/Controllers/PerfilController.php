@@ -39,13 +39,15 @@ class PerfilController extends Controller
     public function update(UpdatePerfil $request, $nome)
     {
         try {
-            $usuarioLogado = auth()->user();
-            $donoPerfil = User::where('name', $nome)->first();
+            $usuarioLogado  = auth()->user();
+            $donoPerfil     = User::where('name', $nome)->first();
 
             if($usuarioLogado == $donoPerfil) {
-                /* ===== Tratando os dados ===== */
+                /**
+                 * Tratamento de dados
+                 */
                 $perfil = $donoPerfil->perfil;
-                $dados = $request->only(['descricao']);
+                $dados  = $request->only(['descricao']);
 
                 $links = [];
                 $imagemPerfil = $request->imagem_perfil;
@@ -77,7 +79,9 @@ class PerfilController extends Controller
                     $dados['imagem_perfil'] = $nomeImagem;
                 endif;
 
-                /* ===== Update ===== */
+                /**
+                 * Realizando update
+                 */
                 $resultado = $perfil->update($dados);
                 $resultado ? $this->notify('success', 'Perfil atualizado com sucesso!') : $this->notify('danger', 'Não foi possível atualizar');
 

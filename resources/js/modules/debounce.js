@@ -4,7 +4,7 @@
  * @param  {Number}
  * @return {[Function]}
  */
-export default function debounce(fn, tempo = 1000)
+export function debounce(fn, tempo = 1000)
 {
     let controle = null;
 

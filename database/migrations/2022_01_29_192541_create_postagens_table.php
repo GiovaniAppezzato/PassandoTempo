@@ -20,8 +20,13 @@ class CreatePostagensTable extends Migration
             $table->string('hash', 128);
             $table->json('conteudo');
             $table->string('imagem_postagem');
+            $table->string('tema');
 
-            $table->foreignId('user_id')->constrained();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')
+                  ->references('id')->on('users')
+                  ->onDelete('cascade');
+
             $table->timestamps();
         });
     }

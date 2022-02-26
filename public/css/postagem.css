@@ -1,1 +1,86 @@
-.codex-editor *{--colorText:#1f2937;--colorLink:#60a5fa}.codex-editor__redactor{padding-bottom:150px!important}h1[class=ce-header]{color:var(--colorText);font-size:1.3rem}h2[class=ce-header]{color:var(--colorText);font-size:1.25rem}h3[class=ce-header]{color:var(--colorText);font-size:1.1rem}.ce-paragraph{text-align:justify}.ce-block a{color:var(--colorLink);cursor:pointer;text-decoration:none}.cdx-marker{background:#a5b4fc4f;border-radius:.15rem;color:#818cf8!important;padding:3px 4px}.cdx-checklist__item-checkbox:after{left:5px;top:6.5px}.cdx-checklist__item--checked .cdx-checklist__item-checkbox{background:#818cf8;border-color:#818cf8;transition-duration:.2s;transition-property:all;transition-timing-function:cubic-bezier(0,0,.2,1)}.cdx-checklist__item--checked .cdx-checklist__item-checkbox:hover{background:#717bd9!important;border-color:#818cf8}
+/*
+|--------------------------------------------------------------------------
+| CSS POSTAGEM & EDITOR
+|--------------------------------------------------------------------------
+|
+*/
+
+.codex-editor * {
+    --colorText: #1f2937;
+    --colorLink: #60a5fa;
+}
+
+.codex-editor__redactor {
+    padding-bottom: 150px !important;
+}
+
+.ct {
+    display: none;
+}
+
+.ce-block__content {
+    max-width: 750px !important;
+}
+
+.ce-toolbar__content {
+    max-width: 750px !important
+}
+
+.cdx-loader::before {
+    border-left-color: #6366f1 !important;
+}
+
+h1[class="ce-header"] {
+    font-size: 1.3rem;
+    color: var(--colorText);
+}
+h2[class="ce-header"] {
+    font-size: 1.25rem;
+    color: var(--colorText);
+}
+h3[class="ce-header"] {
+    font-size: 1.10rem;
+    color: var(--colorText);
+}
+
+.ce-paragraph {
+    text-align: justify;
+}
+
+.ce-block a {
+    cursor: pointer;
+    color: var(--colorLink);
+    text-decoration: none;
+}
+
+.cdx-marker {
+    color: #818cf8 !important;
+    background: #a5b4fc4f;
+    padding: 3px 4px;
+    border-radius: 0.15rem;
+}
+
+.cdx-checklist__item-checkbox::after {
+    top: 6.5px;
+    left: 5px;
+}
+.cdx-checklist__item--checked .cdx-checklist__item-checkbox {
+    background: #818cf8;
+    border-color: #818cf8;
+
+    transition-property: all;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+.cdx-checklist__item--checked .cdx-checklist__item-checkbox:hover {
+    background: #717bd9 !important;
+    border-color: #818cf8;
+}
+
+@media (min-width: 992px)
+{
+    .ct {
+        display: block;
+    }
+}
+

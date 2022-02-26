@@ -8,7 +8,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
             </label>
 
-            <span class="font-medium text-gray-500 select-none mx-2">Menu</span>
+            {{-- <span class="font-medium text-gray-500 select-none mx-2">Menu</span> --}}
         </div>
 
         <ul class="overflow-y-auto h-full">
@@ -37,7 +37,7 @@
             </li>
 
             <li class="mb-2 select-none" href="#">
-                <a class="grid grid-cols-[max-content_max-content] items-center gap-2 p-2 rounded cursor-pointer hover:bg-gray-200 active:bg-gray-300" id="aleatorio" href="/postagem?post=e8578e0a630782c6cb7a475c4b9cb5e68f8906ae">
+                <a class="grid grid-cols-[max-content_max-content] items-center gap-2 p-2 rounded cursor-pointer hover:bg-gray-200 active:bg-gray-300" id="aleatorio" href="{{ route('postagem.show', 'e8578e0a630782c6cb7a475c4b9cb5e68f8906ae') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" stroke="currentColor" class="ionicon" viewBox="0 0 512 512"><title>Aleatório</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M400 304l48 48-48 48M400 112l48 48-48 48M64 352h85.19a80 80 0 0066.56-35.62L256 256"/><path d="M64 160h85.19a80 80 0 0166.56 35.62l80.5 120.76A80 80 0 00362.81 352H416M416 160h-53.19a80 80 0 00-66.56 35.62L288 208" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
 
                     <span class="text-sm font-semibold">Aleatório</span>

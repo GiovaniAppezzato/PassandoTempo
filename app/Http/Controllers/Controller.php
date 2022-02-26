@@ -24,4 +24,10 @@ class Controller extends BaseController
     {
         session()->flash(strtolower($type), $message);
     }
+
+    public function clear($string)
+    {
+        // return htmlspecialchars(trim($string), ENT_QUOTES);
+        return filter_var(trim($string), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    }
 }

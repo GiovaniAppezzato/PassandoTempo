@@ -23,8 +23,10 @@ export default class Editor {
             data: options.data || {},
             autofocus: options.autofocus || false,
             placeholder: options.placeholder || '',
+            readOnly: options.readOnly || false,
 
-            onReady: options.onReady || null
+            onReady: options.onReady || null,
+            onChange: options.onChange|| null
         }
 
         this.init();
@@ -37,7 +39,10 @@ export default class Editor {
             data: this._options.data,
             autofocus: this._options.autofocus,
             placeholder: this._options.placeholder,
+            readOnly: this._options.readOnly,
+
             onReady: this._options.onReady,
+            onChange: this._options.onChange,
 
             tools: {
                 paragraph: {
@@ -92,7 +97,7 @@ export default class Editor {
     async getContent()
     {
         const data = await this.editor.save().catch((error) => this.getError(error));
-        console.log(data)
+        return data;
     }
 
     /**
