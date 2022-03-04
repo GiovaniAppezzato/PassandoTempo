@@ -2,7 +2,7 @@
        sidebarLoaded="expand" sidebarActive="{{ $edit ? '#usuario' : '' }}">
 
    <x-slot name="script">
-       <script src="{{ asset('js/usuario/editar-perfil.js') }}"></script>
+       <script src="{{ asset('js/usuario/editando-perfil.js') }}"></script>
    </x-slot>
 
     {{-- ===== Perfil ===== --}}
@@ -67,79 +67,113 @@
         </div>
 
         <div class="px-4 lg:px-6">
-            <div class="content-user-wrapper mb-4 max-w-[100rem] mx-auto">
-                <div class="w-full flex justify-between items-center mb-2">
-                    <a class="text-gray-800" href="">{{ Auth::user() && Auth::user()->name == $usuario->name ? 'Suas postagens:' : "Postagens do usuário" }}</a>
-                </div>
+            <div class="w-full flex justify-between items-center px-2 mb-1">
+                <span>
+                    {{ Auth::user() && Auth::user()->name == $usuario->name ? 'Suas postagens:' : "Postagens do usuário" }}
+                </span>
 
-                <article class="content-user">
-                    <div class="content-user__view" data-resize="16:9">
-                        <a class="content-user__image" style="background-image: url({{ asset('storage/postagem/imagem05.jpg') }})" href="/postagem?post=e8578e0a630782c6cb7a475c4b9cb5e68f8906ae"></a>
+                <div class="relative">
+                    <div data-toggle="dropdown">
+
                     </div>
-                    <div class="content-user__body">
-                        <p class="content-user__title">A segunda temporada de The Witcher já tem data?</p>
-                        <p class="content-user__description">com a chegada da franquia ao cinema junto com o seu tremendo sucesso, muitos estão se perguntando</p>
+                    <div>
+                        {{-- Filtro --}}
                     </div>
-                    <div class="content-user__footer">
-                        <a class="button w-full px-6 sm:w-max sm:px-6" href="/postagem?post=e8578e0a630782c6cb7a475c4b9cb5e68f8906ae">Ver</a>
+                </div>
+            </div>
+
+            <div class="w-full flex flex-wrap gap-x-[12px] gap-y-6">
+
+                @foreach ($postagens as $postagem)
+                    <div class="w-full sm:w-[calc(50%-6px)] md:w-[calc(33.33%-8px)] 2xl:w-[calc(25%-9px)]">
+                        <x-content-user :postagem="$postagem" />
                     </div>
-                </article>
+                @endforeach
+
             </div>
         </div>
     @else
         <div class="max-w-sm xl:max-w-xl mx-auto px-4 py-8 lg:px-6 ">
-            <img src="{{ asset('imagens/imagemNaoEncontrado.svg') }}" alt="Imagem não encontrado">
-            <p class="w-full text-center text-gray-500 text-lg font-semibold mt-4">Usuário não encontrado</p>
+            <img src="{{ asset('assets/imagens/imagemNaoEncontrado.svg') }}" alt="Imagem não encontrado">
+            <p class="w-full text-center text-gray-500 text-lg font-semibold mt-8">
+                Usuário não encontrado
+            </p>
 
             @if($parametro != null)
                 <div class="max-w-[180px] truncate mx-auto text-center font-semibold text-indigo-500">{{ $parametro }}</div>
             @endif
 
             <div class="flex justify-center mt-2">
-                <a class="px-1 text-gray-500 hover:text-dark hover:border-b-2 hover:border-indigo-500 transition duration-200" href="{{ route('index') }}">Voltar ao início</a>
+                <a class="px-1 text-gray-500 hover:text-dark hover:border-b-2 hover:border-indigo-500 transition duration-200" href="{{ route('index') }}">
+                    Voltar ao início
+                </a>
             </div>
         </div>
     @endif
 
-    {{-- ===== Modal - Editar perfil ===== --}}
+    {{--
+        Modal - Editar perfil
+     --}}
     @if($edit)
         @if($errors->any())
             <x-toast type="danger" message="Erro o atualizar... verifique os dados" />
         @endif
 
-        <x-modal modal="edit-profile" type="warning" title="Personalizando   - {{ $usuario->id }}" position="center">
-            <p class="text-medium mb-4 indent-4 lg:mb-8">Olá {{ $usuario->name }}, Aqui é possível customizar o seu perfil para deixa-lo com a sua cara, caso queira editar os dados da conta como email para verificação, senha, tipo de conta ou etc vá até a página de configuração ou <a class="text-blue-600" href="#">clique aqui.</a></p>
-            <h2 class="text-gray-700 mb-4">Editando perfil <i class="ml-1 far fa-edit"></i></h2>
+        <x-modal class="max-w-3xl" modal="edit-profile" type="warning"
+                 title="Personalizando - {{ $usuario->id }}" position="center">
+
+            <p class="indent-4 mb-6">
+                Olá {{ $usuario->name }}, Aqui é possível customizar o seu perfil para deixa-lo com a sua cara, caso queira editar os dados da conta como email para verificação, senha, tipo de conta ou etc vá até a página de configuração ou <a class="text-blue-600" href="#">clique aqui.</a>
+            </p>
+            <h2 class="mb-4">
+                Editando perfil <i class="ml-1 far fa-edit"></i>
+            </h2>
+
             <x-validation-errors class="mb-4" :errors="$errors" />
 
-            <form action="{{ route('perfil.update', $usuario->name) }}" id="edit-perfil"  enctype="multipart/form-data" method="POST"> @csrf @method('PUT')
+            <form class="{{ route('perfil.update', $usuario->name) }}" id="edit-perfil" enctype="multipart/form-data" method="POST">
+                @csrf
+                @method('PUT')
+
                 <div class="w-28 h-28 mx-auto lg:w-32 lg:h-32 relative">
                     @if ($usuario->perfil->imagem_perfil != null)
-                        <img class="object-cover rounded-full shadow-lg drop-shadow-md w-full h-full" src="{{ asset('storage/perfil/' . $usuario->perfil->imagem_perfil) }}" alt="imagem_perfil">
+                        <img class="w-full h-full object-cover rounded-full shadow-lg" src="{{ asset('storage/perfil/' . $usuario->perfil->imagem_perfil) }}" alt="imagem_perfil">
                     @else
-                        <div class="flex-centered bg-gray-100 rounded-full w-full h-full mx-auto shadow-md">
+                        <div class="flex-centered w-full h-full mx-auto bg-gray-100 rounded-full shadow-md">
                             <i class="text-dark text-2xl fas fa-user"></i>
                         </div>
                     @endif
 
-                    <label for="imagem_perfil" class="absolute top-0 left-0 rounded-full flex-centered cursor-pointer w-full h-full bg-dark bg-opacity-60 text-3xl text-white transition duration-400 ease-out opacity-0 hover:opacity-100 hover:ring-3 focus:opacity-100 focus:ring-3 ring-indigo-400 ring-offset-2" for="">
-                        <i class="fas fa-camera"></i>
+                    <label class="absolute top-0 left-0 flex-centered w-full h-full rounded-full transition duration-400 ease-out bg-dark bg-opacity-60 opacity-0 cursor-pointer
+                                  hover:opacity-100 hover:ring-3 focus:opacity-100 focus:ring-3 ring-indigo-400 ring-offset-2" for="imagem_perfil">
+
+                        <i class="text-white text-3xl fas fa-camera"></i>
                         <input class="hidden invisible" type="file" name="imagem_perfil" id="imagem_perfil">
                     </label>
                 </div>
 
-                <div class="my-2 mb-4 max-w-2xl mx-auto">
-                    <div class="text-sm text-center text-gray-600 max-w-sm mx-auto mb-1 truncate" id="exibirArquivo">Nenhuma imagem selecionada</div>
+                <div class="mt-2 mb-4">
+                    <div class="text-sm text-center max-w-sm mx-auto mb-1 truncate" id="exibirArquivo">
+                        Nenhuma imagem selecionada
+                    </div>
 
-                    <p class="font-semibold text-lg w-full text-gray-800 flex justify-center items-center lg:text-xl">{{ $usuario->name }}</p>
-                    <p class="text-center font-semibold text-sm text-gray-400 mb-2 w-full">{{ $usuario->tipo_conta }}</p>
-                    <textarea class="text-center font-semibold text-sm text-gray-600 w-full resize-none p-1 lg:text-base focus:outline-none" data-textarea="resize" name="descricao" maxlength="130" placeholder="Coloque uma descrição aqui - máx 130 caracteres">{{ !$errors->any() ? $usuario->perfil->descricao : old('descricao') }}</textarea>
+                    <p class="font-semibold text-lg w-full text-gray-800 flex justify-center items-center lg:text   -xl">
+                        {{ $usuario->name }}
+                    </p>
+                    <p class="text-sm text-center font-semibold text-gray-400 mb-2">
+                        {{ $usuario->tipo_conta }}
+                    </p>
 
-                    <div class="w-full mt-4">
-                        <div class="mb-2">
-                            Deixar o perfil PRIVADO: <input class="checkbox-switch ml-2" type="checkbox" name="privado" value="1" {{ $usuario->perfil->privado ? 'checked' : '' }}>
-                        </div>
+                    <textarea class="text-center font-semibold text-sm text-gray-600 w-full resize-none p-1 lg:text-base focus:outline-none"
+                              data-textarea="resize" name="descricao" maxlength="130" placeholder="Coloque uma descrição aqui - máx 130 caracteres">{{ !$errors->any() ? $usuario->perfil->descricao : old('descricao') }}</textarea>
+
+                    <div class="w-full my-2">
+                        <!-- checkbox-switch -->
                         <div>
+                            Perfil PRIVADO: <input class="checkbox-switch ml-2" type="checkbox" name="privado" value="1" {{ $usuario->perfil->privado ? 'checked' : '' }}>
+                        </div>
+
+                        {{-- <div>
                             <h3 class="mb-2">
                                 Coloque alguns links: <span class="text-sm text-gray-400">(Copie e cole a URL)</span>
                             </h3>
@@ -150,11 +184,11 @@
                                     <input class="flex-grow text-sm mx-1 p-1 rounded bg-transparent focus:outline-none md:mx-2" type="text" name="{{ $link }}" placeholder="{{ $link }}" value="{{ !$errors->any() ? $usuario->perfil->urls[$link] : old($link) }}">
                                 </div>
                             @endforeach
-                        </div>
+                        </div> --}}
+                    </div>
 
-                        <div class="text-sm sm:text-right">
-                            Alguma sugestão? deixe sua mensagem <a class="text-blue-600" href="#">aqui.</a>
-                        </div>
+                    <div class="text-sm sm:text-right">
+                        Alguma sugestão? deixe sua mensagem <a class="text-blue-600" href="#">aqui.</a>
                     </div>
                 </div>
 

@@ -1,48 +1,105 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Quicksand:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-    * {
-        @apply font-medium;
-    }
+
 }
 
 @layer components {
     /**
-     * Buttons && variações
+     * Buttons && variants
      */
     .button  {
-        @apply bg-indigo-500 border-indigo-500 hover:bg-indigo-600 text-white
-               rounded shadow-md cursor-pointer select-none focus:ring-2 ring-offset-2 ring-indigo-600
-               flex justify-center items-center w-max px-4 py-1 transition duration-200 ease-out focus:outline-none;
+        @apply flex justify-center items-center w-max px-4 py-1
+               text-white font-medium bg-indigo-500 border-indigo-500
+               rounded shadow-md cursor-pointer select-none
+               transition duration-200 ease-out
+               hover:bg-indigo-600 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600;
     }
 
     .button-danger {
-        @apply bg-red-500 hover:bg-red-600 ring-red-600 border-red-600 !important;
-    }
-
-    .button-warning {
-        @apply bg-orange-400 hover:bg-orange-500 ring-orange-500 border-orange-500 !important;
+        @apply bg-red-500 ring-red-600 border-red-600
+               hover:bg-red-600 !important;
     }
 
     .button-outline {
-        @apply border-2 font-semibold ring-indigo-600 bg-transparent text-indigo-500 border-indigo-500 hover:bg-indigo-600 hover:border-indigo-600 hover:text-white;
+        @apply border-2 border-indigo-500 ring-indigo-600 text-indigo-500 font-semibold bg-transparent
+               hover:bg-indigo-600 hover:border-indigo-600 hover:text-white;
     }
 
     .button-outline-danger {
-        @apply border-2 font-semibold ring-red-600 bg-transparent text-red-500 border-red-500 hover:bg-red-600 hover:border-red-600 hover:text-white;
+        @apply border-2 border-red-500 ring-red-600 text-red-500 font-semibold bg-transparent
+               hover:bg-red-600 hover:border-red-600 hover:text-white;
+    }
+
+
+    /**
+     * Component MODAL && variants
+     */
+    .modal-background {
+        @apply fixed top-0 left-0 z-50 w-full h-full p-2
+               flex justify-center bg-stone-900 bg-opacity-50
+               transition duration-300 ease-out
+               opacity-0 invisible
+    }
+
+    .modal-show {
+        @apply opacity-100 visible !important;
+    }
+
+    .modal-show > .modal {
+        @apply scale-100 !important;
+    }
+
+    .modal {
+        @apply w-full h-max max-w-2xl p-3 pb-4 self-center
+               bg-white shadow-md rounded-md border-l-4 border-indigo-400
+               scale-110 transition duration-200 ease-out;
+    }
+
+    .modal__close {
+        @apply flex justify-end mb-2;
+    }
+
+    .modal__content {
+        @apply max-h-[80vh] overflow-y-auto mb-3 px-4;
+    }
+
+    .modal__title {
+        @apply w-full mb-2 text-xl;
+    }
+
+    .modal__actions {
+        @apply flex justify-end mt-4 mb-1;
+    }
+
+    .modal--top{
+        @apply relative top-20 self-start !important;
+    }
+
+    .modal--success{
+        --tw-border-opacity: 1 !important;
+        border-color: rgb(34 197 94 / var(--tw-border-opacity)) !important;
+    }
+    .modal--danger{
+        --tw-border-opacity: 1 !important;
+        border-color: rgb(248 113 113 / var(--tw-border-opacity)) !important;
+    }
+    .modal--warning{
+        --tw-border-opacity: 1 !important;
+        border-color: rgb(251 146 60 / var(--tw-border-opacity)) !important;
     }
 
     /**
-     * Inputs
+     * Estilização básica de inputs
      */
     .input {
-        @apply border-gray-400 border-opacity-80 border rounded-md shadow w-full text-sm py-2 px-3 mt-1 transition duration-150 ease-out focus:outline-none;
+        @apply w-full py-2 px-3 mt-1 border border-gray-400 border-opacity-80
+               rounded-md shadow text-sm transition duration-150 ease-out focus:outline-none;
     }
 
     .input-ring {
@@ -54,125 +111,110 @@
     }
 
     /**
-     * Search input
+     * Component "Checkbox-switch"
      */
-    .search {
-        @apply w-full bg-gray-200 rounded-full flex p-1 shadow-lg;
+    .checkbox-switch {
+        position: relative;
+        width: var(--tamanho-checkbox);
+        height: calc(var(--tamanho-checkbox) / 2);
+        appearance: none;
+        background: #d1d5db;
+        outline: none;
+        border-radius: 20px;
+        cursor: pointer;
+        box-shadow: inset 0 0 5px rgba(0,0,0,.2);
+
+        --tamanho-checkbox: 2rem;
+
+        @apply transition-all duration-300 ease-out;
+    }
+    .checkbox-switch:checked {
+        background: #818cf8;
+    }
+    .checkbox-switch:before {
+        content: '';
+        position: absolute;
+        width: calc(var(--tamanho-checkbox) / 2);
+        height: calc(var(--tamanho-checkbox) / 2);
+        border-radius: 50%;
+        top: 0;
+        left: 0;
+        background-color: #fff;
+        transition: 0.3s;
+        transform: scale(1.1);
+        box-shadow: 0 2px 5px rgba(0,0,0,.2);
+    }
+    .checkbox-switch:checked:before {
+        left: calc(var(--tamanho-checkbox) / 2);
     }
 
-    .search__icon {
-        @apply flex items-center px-2;
-    }
-
-    .search__input {
-        @apply flex-grow mx-1 p-1 rounded bg-transparent focus:outline-none md:mx-2;
-    }
-
-    /**
-     * Componente Modal
-     */
-    .modal-open {
-        @apply opacity-100 visible !important;
-    }
-
-    .modal-background {
-        @apply opacity-0 invisible fixed top-[0] left-[0] w-full h-full z-50 flex justify-center p-2 bg-stone-900 bg-opacity-50 transition duration-300 ease-out
-    }
-
-    .modal {
-        @apply w-full h-max max-w-2xl scale-110 transition duration-200 ease-out p-3 pb-4 bg-white shadow-md rounded-md border-l-4 border-indigo-400 self-center;
-    }
-
-    .modal__close {
-        @apply flex justify-end mb-2;
-    }
-
-    .modal__content {
-        @apply mb-3 px-4 max-h-[80vh] overflow-y-auto;
-    }
-
-    .modal__title {
-        @apply w-full mb-2 text-xl text-gray-700;
-    }
-
-    .modal__actions {
-        @apply flex justify-end mt-4 mb-1;
-    }
 
     /**
      * Componente content-user
      */
-    .content-user-wrapper {
-        @apply flex flex-wrap gap-x-[12px];
-    }
-    .content-user {
-        @apply mb-6 w-full sm:w-[calc(50%-6px)] md:w-[calc(33.33%-8px)] xl:w-[calc(25%-9px)] 3xl:w-[calc(20%-9.6px)];
+     .card-article {
+         @apply w-full bg-white shadow-md rounded-md
+                /* sm:w-[calc(50%-6px)] md:w-[calc(33.33%-8px)] xl:w-[calc(25%-9px)] 3xl:w-[calc(20%-9.6px)] */
+     }
+
+    .card-article__image {
+        @apply w-full relative bg-cover bg-center rounded-t-lg;
     }
 
-    .content-user__view {
-        @apply w-full bg-gray-200 flex justify-center items-center;
+    .card-article__main {
+        @apply px-4 py-2;
     }
 
-    .content-user__image {
-        @apply bg-cover bg-center bg-no-repeat w-full h-full transition duration-200 hover:scale-[1.03] cursor-pointer;
+    .card-article__actions {
+        @apply flex flex-wrap justify-between items-center p-4;
     }
 
-    .content-user__body {
-        @apply w-full px-2 mt-1;
+    .card-article__theme {
+        @apply bg-indigo-100 text-indigo-400 text-xs font-semibold px-2.5 py-0.5 rounded;
     }
 
-    .content-user__title {
+    .card-article__title {
         display: -webkit-box;
         text-overflow: ellipsis;
         overflow: hidden;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
 
-        @apply w-full h-[40px] text-sm text-gray-700 font-semibold select-none lg:select-text;
+        @apply h-[45px] text-[15px] text-gray-800 font-semibold select-none my-2 lg:select-text;
     }
 
-    .content-user__description {
+    .card-article__description {
         display: -webkit-box;
         text-overflow: ellipsis;
         overflow: hidden;
-        -webkit-line-clamp: 2;
+        -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
 
-        @apply w-full h-[38px] px-2 mt-1 text-[13px] text-gray-600 select-none lg:select-text;
+        @apply h-[67.5px] text-[15px] text-gray-600 select-none lg:select-text;
     }
 
-    .content-user__footer {
-        @apply w-full flex items-center flex-wrap mt-4;
+    .card-article__profile {
+        @apply w-[calc(100%-105px)] ml-2 flex justify-end items-center;
     }
 
-    /**
-     * Toast
-     */
-    .toast {
-        @apply fixed top-[5rem] right-4 max-w-[80%] bg-zinc-800 text-white flex rounded shadow p-3 md:max-w-[320px];
+    .card-article__profile > a, .card-article__profile > span {
+        @apply text-sm font-medium text-gray-400 truncate mr-2;
     }
 }
 
 @layer utilities {
-    .flex-centered {
-        @apply flex justify-center items-center;
+    /**
+     * MENU MOBILE
+     */
+    .mobile-menu{
+        @apply left-0 transition-all duration-200 ease-out;
     }
 
-    .truncate-2 {
-        display: -webkit-box;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
+    .dropdown-active { @apply block !important }
+    .dropdown-animate { @apply opacity-100 visible translate-x-0 translate-y-0 scale-100 transition duration-300 ease-out !important }
 
-        @apply select-none lg:select-text;
-    }
+    .is-visible { @apply visible opacity-100 !important }
+    .is-invisible { @apply invisible opacity-0 !important }
 
-    .icon-svg {
-        @apply stroke-gray-700 hover:stroke-gray-800 cursor-pointer;
-    }
-
-    .initial {
-        position: initial;
-    }
+    .flex-centered { @apply flex justify-center items-center }
 }

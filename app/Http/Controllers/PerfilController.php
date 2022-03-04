@@ -28,7 +28,12 @@ class PerfilController extends Controller
             $usuario = User::where('name', $nome)->first();
             $usuarioLogado != null && $usuarioLogado->name == $nome ? $edit = true : $edit = false;
 
-            return view('usuario.show', ['usuario' => $usuario, 'edit' => $edit, 'parametro' => $nome]);
+            return view('usuario.show', [
+                'usuario' => $usuario,
+                'postagens' => $usuario->postagens,
+                'edit' => $edit,
+                'parametro' => $nome
+            ]);
         } catch (\Exception $e) {
 
             $this->notify_error();

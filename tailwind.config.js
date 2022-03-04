@@ -7,9 +7,13 @@ module.exports = {
         './resources/views/**/*.blade.php',
         './resources/js/**/*.js'
     ],
+
     safelist: [
-        'animate-spin'
+        'animate-spin', 'rotate-180',
+        'dropdown-active', 'dropdown-animate',
+        'modal--success', 'modal--danger', 'modal--warning'
     ],
+
     theme: {
         extend: {
             screens: {
@@ -21,17 +25,19 @@ module.exports = {
                 '3xl': '1820px',
             },
             fontFamily: {
-                'sans': ['Quicksand', 'Roboto', ...defaultTheme.fontFamily.sans],
-                'quicksand': ['Quicksand', ...defaultTheme.fontFamily.sans],
+                'sans': ['Nunito', 'Quicksand', ...defaultTheme.fontFamily.sans],
+
+                'nunito': ['Nunito', ...defaultTheme.fontFamily.sans],
+                'quick': ['Quicksand', ...defaultTheme.fontFamily.sans]
             },
             colors: {
                 'dark': '#211F1F',
             },
             ringWidth: {
-                '3': '3px',
+                '3': '3px'
             }
         },
     },
 
-    // plugins: [require('@tailwindcss/forms')],
+    // plugins: [require('@tailwindcss/forms')]
 };

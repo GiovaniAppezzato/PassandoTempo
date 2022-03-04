@@ -18,6 +18,34 @@ class PostagemSeeder extends Seeder
      */
     public function run()
     {
-        
+        Postagem::create([
+            'titulo' => 'A segunda temporada de The Witcher já tem data?',
+            'descricao' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lectus tellus, pharetra nec lorem sit amet, suscipit congue arcu. Fusce in pretium mauris, eu eleifend quam. Donec facilisis nisi et elementum scelerisque. Nunc vel dignissim.',
+            'hash' => md5('A segunda temporada de The Witcher já tem data?'),
+            'conteudo' => ['content' => 'NULL'],
+            'tema' => 'Filmes',
+            'imagem_postagem' => 'imagem01.jpg',
+            'user_id' => 2
+        ]);
+
+        Postagem::create([
+            'titulo' => 'Reiner Braun (Shingeki no Kyojin)',
+            'descricao' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lectus tellus, pharetra nec lorem sit amet, suscipit congue arcu. Fusce in pretium mauris, eu eleifend quam. Donec facilisis nisi et elementum scelerisque. Nunc vel dignissim.',
+            'hash' => md5('Reiner Braun (Shingeki no Kyojin)'),
+            'conteudo' => ['content' => 'NULL'],
+            'tema' => 'Animes',
+            'imagem_postagem' => 'imagem02.jpg',
+            'user_id' => 1
+        ]);
+
+        Postagem::create([
+            'titulo' => 'Novidades sobre o PHP 8 e Laravel 8 !!',
+            'descricao' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lectus tellus, pharetra nec lorem sit amet, suscipit congue arcu. Fusce in pretium mauris, eu eleifend quam. Donec facilisis nisi et elementum scelerisque. Nunc vel dignissim.',
+            'hash' => md5('Novidades sobre o PHP 8 e Laravel 8'),
+            'conteudo' => ['content' => 'NULL'],
+            'tema' => 'Programação',
+            'imagem_postagem' => 'imagem03.jpg',
+            'user_id' => 1
+        ]);
     }
 }

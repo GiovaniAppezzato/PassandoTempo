@@ -13,7 +13,12 @@ class PostagemController extends Controller
 {
     public function index()
     {
-        return view('index');
+        $usuario = auth()->user();
+        $postagens = Postagem::all();
+
+        // dd($postagens);
+
+        return view('index', ['usuario' => $usuario, 'postagens' => $postagens]);
     }
 
     public function show()
