@@ -1,4 +1,4 @@
-<x-app-auth titulo="Página de cadastro - {{ env('APP_NAME') }}">
+<x-auth title="Página de cadastro - {{ env('APP_NAME') }}">
 
     <form class="w-full max-w-md h-max bg-white my-2 px-4 py-5 sm:px-6 shadow-lg rounded-lg" action="{{ $colaborador ? route('register').'?create=colaborador' : route('register') }}" method="POST">
         @csrf
@@ -55,8 +55,8 @@
             <p class="text-sm text-red-500 mt-2"><span class="font-semibold">Atenção:</span> Qualquer atitude com propósito de estragar a expêriencia de outros usuários pode resultar em banimento.</p>
 
             <x-slot name="actions">
-                <a class="button" href="{{ route('register').'?create=colaborador' }}">Entendi</a>
+                <a class="button button-ring" href="{{ route('register').'?create=colaborador' }}">Entendi</a>
             </x-slot>
         </x-modal>
     @endif
-</x-auth-layout>
+</x-auth>

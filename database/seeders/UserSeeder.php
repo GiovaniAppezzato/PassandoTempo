@@ -42,7 +42,7 @@ class UserSeeder extends Seeder
             'perfil'=>
             [
                 'privado' => false,
-                'imagem_perfil' => 'example03.jpg',
+                'imagem_perfil' => 'example04.png',
                 'descricao' => 'Imagine uma nova história para a sua vida e acredite nela.'
             ]
         ]);

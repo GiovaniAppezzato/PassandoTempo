@@ -7,19 +7,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ $titulo }}</title>
+    <title>{{ $title }}</title>
 
     <link rel="stylesheet" href="{{ url(mix('css/app.css')) }}">
+    @stack('styles')
 </head>
-<body class="bg-gray-100"> {{-- bg-[#F9F8F8] --}}
+<body class="bg-gray-100">
 
     <div class="w-full h-screen px-3 flex flex-wrap justify-center items-center">
         {{ $slot }}
     </div>
 
-    <script type="module" src="{{ asset('js/frontend.js')}}" charset="utf-8"></script>
-    <script defer src="{{ asset('fontawesome/js/fontawesome.min.js') }}"></script>
-    <script defer src="{{ asset('fontawesome/js/solid.min.js') }}"></script>
-    <script defer src="{{ asset('fontawesome/js/brands.min.js') }}"></script>
+    <!-- Frontend JS -->
+    <script src="{{ asset('js/template.js') }}" type="module"></script>
+
+    <!-- Dependencies -->
+    <script src="{{ asset('js/jquery-360.js') }}"></script>
+    <script defer src="{{ asset('assets/fontawesome/js/fontawesome.min.js') }}"></script>
+    <script defer src="{{ asset('assets/fontawesome/js/solid.min.js') }}"></script>
+    <script defer src="{{ asset('assets/fontawesome/js/brands.min.js') }}"></script>
+    @stack('scripts')
 </body>
 </html>

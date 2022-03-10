@@ -47,5 +47,16 @@ class PostagemSeeder extends Seeder
             'imagem_postagem' => 'imagem03.jpg',
             'user_id' => 1
         ]);
+
+        Postagem::create([
+            'titulo' => 'Guerra virtual: ataque hacker contra Ucrânia começou antes de invasão russa',
+            'descricao' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lectus tellus, pharetra nec lorem sit amet, suscipit congue arcu. Fusce in pretium mauris, eu eleifend quam. Donec facilisis nisi et elementum scelerisque. Nunc vel dignissim.',
+            'hash' => md5('Guerra virtual: ataque hacker contra Ucrânia começou antes de invasão russa'),
+            'conteudo' => ['content' => 'NULL'],
+            'tema' => 'Notícias',
+            'imagem_postagem' => 'imagem04.png',
+            'user_id' => 2
+        ]);
+
     }
 }

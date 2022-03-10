@@ -17,11 +17,21 @@ use App\Http\Controllers\PerfilController;
 */
 
 Route::get('/', [PostagemController::class, 'index'])->name('index');
-Route::get('/pesquisar', [PostagemController::class, 'search'])->name('postagem.search');
 
+/**
+ * ROTAS DE PERFIL
+ * @var [type]
+ */
+Route::get('/perfil', [PerfilController::class, 'index'])->name('perfil.index');
+Route::get('/perfil/{nome}', [PerfilController::class, 'show'])->name('perfil.show');
+Route::put('/perfil/{nome}', [PerfilController::class, 'update'])->name('perfil.update')->middleware(['auth']);
+
+/**
+ * ROTAS DE POSTAGENS
+ */
 Route::middleware(['auth'])->group(function() {
-    Route::get('/postagem/criar', [PostagemController::class, 'create'])->name('postagem.create');
-    Route::post('/postagem/store', [PostagemController::class, 'store'])->name('postagem.store');
+    // Route::get('/postagem/criar', [PostagemController::class, 'create'])->name('postagem.create');
+    // Route::post('/postagem/store', [PostagemController::class, 'store'])->name('postagem.store');
 
     // Route::get('/postagem/{hash}/editar', [PostagemController::class, 'edit'])->name('postagem.edit');
     // Route::put('/postagem/{hash}', [PostagemController::class, 'update'])->name('postagem.update');
@@ -31,8 +41,6 @@ Route::middleware(['auth'])->group(function() {
 Route::redirect('/postagem', '/');
 Route::get('/postagem/{hash}', [PostagemController::class, 'show'])->name('postagem.show');
 
-Route::get('/perfil', [PerfilController::class, 'index'])->name('perfil.index');
-Route::get('/perfil/{nome}', [PerfilController::class, 'show'])->name('perfil.show');
-Route::put('/perfil/{nome}', [PerfilController::class, 'update'])->name('perfil.update')->middleware(['auth']);
+
 
 require __DIR__.'/auth.php';

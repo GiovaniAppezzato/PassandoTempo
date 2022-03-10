@@ -1,4 +1,4 @@
-<x-app-auth titulo="Faça Login - {{ env('APP_NAME') }}">
+<x-auth title="Fazendo login - PassantoTempo">
 
     <form class="w-full max-w-md h-max bg-white my-2 px-4 py-5 sm:px-6 shadow-lg rounded-lg" action="{{ route('login')}}" method="POST">
         @csrf
@@ -29,8 +29,9 @@
         </div>
 
         <div class="flex flex-wrap justify-center">
-            <button class="button w-full">Entrar</button>
+            <button class="button button-ring w-full">Entrar</button>
             <a class="font-medium text-center text-gray-600 rounded transition duration-200 ease-out w-full px-4 py-1 mt-2 hover:bg-gray-100 hover:text-gray-800" href="/">Voltar</a>
         </div>
     </form>
-</x-app-auth>
+
+</x-auth>

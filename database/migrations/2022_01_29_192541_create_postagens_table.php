@@ -19,7 +19,7 @@ class CreatePostagensTable extends Migration
             $table->string('descricao', 560);
             $table->string('hash', 128);
             $table->json('conteudo');
-            $table->string('imagem_postagem');
+            $table->string('imagem_postagem')->nullable();
             $table->string('tema');
 
             $table->unsignedBigInteger('user_id');

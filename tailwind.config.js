@@ -26,9 +26,6 @@ module.exports = {
             },
             fontFamily: {
                 'sans': ['Nunito', 'Quicksand', ...defaultTheme.fontFamily.sans],
-
-                'nunito': ['Nunito', ...defaultTheme.fontFamily.sans],
-                'quick': ['Quicksand', ...defaultTheme.fontFamily.sans]
             },
             colors: {
                 'dark': '#211F1F',

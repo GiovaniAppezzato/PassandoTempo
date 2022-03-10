@@ -24,7 +24,7 @@
 
             @if(isset($actions))
                 <div class="modal__actions">
-                    {{ $actions ?? '' }}
+                    {{ $actions }}
                 </div>
             @endif
         </div>

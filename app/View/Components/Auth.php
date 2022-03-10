@@ -4,20 +4,23 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class App-auth extends Component
+class Auth extends Component
 {
+    /**
+     * Título da página
+     * @var string
+     */
+    public $title;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-
-     public $titulo;
-
-     public function __construct($titulo = 'PassandoTempo')
-     {
-         $this->titulo = $titulo;
-     }
+    public function __construct($title = 'PassandoTempo - Auth')
+    {
+        $this->title = $title;
+    }
 
     /**
      * Get the view / contents that represent the component.
@@ -26,6 +29,6 @@ class App-auth extends Component
      */
     public function render()
     {
-        return view('components.app-auth');
+        return view('components.layouts.app.auth');
     }
 }
